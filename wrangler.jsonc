@@ -9,6 +9,10 @@
 	"compatibility_date": "2025-09-27",
 	"observability": {
 		"enabled": true
+	},
+	"route": {
+		"pattern": "stockcast-api.jebertacchi.eng.br/*",
+		"zone_name": "jebertacchi.eng.br"
 	}
 	/**
 	 * Smart Placement

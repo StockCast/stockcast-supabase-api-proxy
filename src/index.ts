@@ -1,18 +1,41 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.jsonc`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+interface Env {
+  SUPABASE_URL: string
+}
+
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Max-Age': '86400',
+}
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
-	},
-} satisfies ExportedHandler<Env>;
+  async fetch(request: Request, env: Env): Promise<Response> {
+    // CORS preflight
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers: CORS_HEADERS })
+    }
+
+    const url = new URL(request.url)
+    const targetUrl = `${env.SUPABASE_URL}${url.pathname}${url.search}`
+
+    const headers = new Headers(request.headers)
+    headers.delete('Host')
+
+    const response = await fetch(targetUrl, {
+      method: request.method,
+      headers,
+      body: request.body,
+    })
+
+    const responseHeaders = new Headers(response.headers)
+    for (const [key, value] of Object.entries(CORS_HEADERS)) {
+      responseHeaders.set(key, value)
+    }
+
+    return new Response(response.body, {
+      status: response.status,
+      headers: responseHeaders,
+    })
+  },
+}

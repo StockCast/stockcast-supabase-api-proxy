@@ -4,16 +4,16 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "stockcast-supabase-api-proxy",
+	"name": "stockcast-com-br-supabase-api-proxy",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-09-27",
 	"observability": {
 		"enabled": true
 	},
 	"route": {
-		"pattern": "stockcast-api.jebertacchi.eng.br/*",
-		"zone_name": "jebertacchi.eng.br"
-	}
+		"pattern": "api.stockcast.com.br/*",
+		"zone_name": "stockcast.com.br"
+	},
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

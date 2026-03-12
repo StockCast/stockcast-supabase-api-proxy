@@ -30,7 +30,7 @@ npm install
 
 ## Configuration
 
-### 1. Set the Supabase URL Secret
+### 1. Set the Supabase URL Secret (only once)
 
 ```bash
 npx wrangler secret put SUPABASE_URL
@@ -38,15 +38,21 @@ npx wrangler secret put SUPABASE_URL
 
 Enter your Supabase URL when prompted (e.g., `https://your-project.supabase.co`).
 
+**Important!**: If you have already set SUPABASE_URL, you have to login to CloudFlare using wrangler. E.g. to see if SUPABASE_URL is set:
+
+```bash
+npx wrangler secret list
+```
+
 ### 2. Configure Cloudflare DNS
 
 Add the following DNS record in your Cloudflare dashboard:
 
 | Type | Name | Content | Proxy |
 |------|------|---------|-------|
-| AAAA | stockcast-api | 100:: | ON (orange cloud) |
+| AAAA | api | 100:: | ON (orange cloud) |
 
-This creates the endpoint: `stockcast-api.jebertacchi.eng.br`
+This creates the endpoint: `api.stockcast.com.br`
 
 ### 3. Update Route (Optional)
 
@@ -93,7 +99,7 @@ Once deployed, make requests to your proxy endpoint:
 
 ```bash
 # Example: Query a Supabase table
-curl "https://stockcast-api.jebertacchi.eng.br/rest/v1/your_table" \
+curl "https://api.stockcast.com.br/rest/v1/your_table" \
   -H "Authorization: Bearer YOUR_SUPABASE_ANON_KEY" \
   -H "apikey: YOUR_SUPABASE_ANON_KEY"
 ```

@@ -38,7 +38,7 @@ export default {
 	const myCSP = [
 		"default-src 'self'",
 		"script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://apis.google.com https://accounts.google.com https://www.gstatic.com https://ssl.gstatic.com https://www.google.com https://static.cloudflareinsights.com",
-		"connect-src 'self' https://*.supabase.co wss://*.supabase.co https://accounts.google.com https://api.stockcast.com.br https://growth.stockcast.com.br https://*.sentry.io",
+		"connect-src 'self' https://*.supabase.co wss://*.supabase.co https://accounts.google.com https://*.stockcast.com.br https://*.sentry.io",
 		"frame-src 'self' https://accounts.google.com https://*.supabase.co",
 		"base-uri 'self' https://accounts.google.com",
 		"img-src 'self' data: https://*.googleusercontent.com https://www.gstatic.com",

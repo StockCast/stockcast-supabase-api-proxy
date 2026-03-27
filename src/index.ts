@@ -3,9 +3,10 @@ interface Env {
 }
 
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://app-beta.stockcast.com.br',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-client-info, apikey, Prefer, Range, If-None-Match, accept-profile',
+  'Access-Control-Allow-Credentials': 'true',
   'Access-Control-Max-Age': '86400',
 }
 
@@ -47,6 +48,7 @@ export default {
 	].join('; ');
     responseHeaders.set('Content-Security-Policy', myCSP);
 		responseHeaders.set('Cross-Origin-Resource-Policy', 'cross-origin');
+		responseHeaders.set('Cross-Origin-Allow-Origin', '*');
 
     return new Response(response.body, {
       status: response.status,

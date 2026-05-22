@@ -4,8 +4,8 @@ interface Env {
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': 'https://app-beta.stockcast.com.br',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-client-info, apikey, Prefer, Range, If-None-Match, accept-profile, x-supabase-api-version',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PATCH, PUT, DELETE',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-client-info, apikey, Prefer, Range, If-None-Match, accept-profile, x-supabase-api-version, content-profile',
   'Access-Control-Allow-Credentials': 'true',
   'Access-Control-Max-Age': '86400',
 }
